@@ -8,6 +8,7 @@
 require('./bootstrap');
 import router from  './routes.js';
 
+
 window.Vue = require('vue');
 
 /**
@@ -16,10 +17,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('welcome-component', require('./components/Welcome.vue'));
+
+// Vue.component('welcome-component', require('./components/Welcome.vue'));
 
 const app = new Vue({
     router: router,
     el: '#app'
-   
 });
