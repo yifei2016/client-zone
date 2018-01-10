@@ -16,4 +16,11 @@
 // });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
+
+
+//Route::get('/projects', 'ProjectController@index');
+// Route::get('/index', 'ProjectController@index');
+Route::resource(
+  'projects', 'ProjectController'
+);
