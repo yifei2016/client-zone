@@ -24,3 +24,7 @@ Auth::routes();
 Route::resource(
   'projects', 'ProjectController'
 );
+
+Route::resource(
+  'clients', 'ClientController'
+);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 // use App\User;
 use App\Project;
+use App\Client;
 
 use Illuminate\Http\Request;
 
@@ -18,8 +19,7 @@ class ProjectController extends Controller
         //visa alla projekt
         $projects = Project::all();
         //dd($projects->pluck('name'))
-        return view('projects.index', compact('projects'));
-        
+        return view('projects.index', ['projects' => $projects]);    
     }
 
     /**
@@ -30,7 +30,8 @@ class ProjectController extends Controller
     public function create()
     {
         //return views, get a form
-        return view('projects.create');
+        $clients = Client::all();
+        return view('projects.create',['clients' => $clients]);
     }
 
     /**
@@ -51,8 +52,15 @@ class ProjectController extends Controller
         // $project -> status = $request->status;
         // $project -> save();
         // return redirect() -> route('projects.store');
-        Project::create($request->all());
-        return view('projects.store');//
+        // Project::create($request->all());
+        $project = new Project();
+        $project -> name = $request -> name;
+        $project -> link = $request -> link;
+        $project -> status = $request ->  status;
+        $project -> client_id = $request ->  client_id;
+        $project -> type = $request -> type;
+        $project -> save();
+        return redirect('projects');
     }
 
     /**

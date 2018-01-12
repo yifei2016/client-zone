@@ -2,28 +2,15 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Project extends Authenticatable
+class Project extends Model
 {
-    use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'type', 'link','client','project','status',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $table = 'projects';
+    public $timestamps = true;
+    protected $fillable = ['name','type','link','client_id','status'];
+    public function client()
+    {
+        return $this->belongsTo('App\Client');
+    }
 }
